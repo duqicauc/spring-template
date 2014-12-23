@@ -2,6 +2,9 @@
 transport-server
 ================
 
+.. image:: https://travis-ci.org/massenz/spring-template.svg?branch=develop
+:target: https://travis-ci.org/massenz/spring-template
+
 :Author: Marco Massenzio (marco@alertavert.com)
 :Revision: 1.0-SNAPSHOT
 :Created: 2014-12-21
