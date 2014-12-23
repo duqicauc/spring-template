@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2014 Elementum SCM, Inc. -->
+<!-- All rights reserved.  http://www.elementum.com -->
+
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <logger name="org.springframework" level="WARN"/>
+    <logger name="com.elementum" level="INFO"/>
+</configuration>

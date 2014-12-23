@@ -1,0 +1,24 @@
+# Copyright (c) 2014 Elementum SCM, Inc.
+# All rights reserved.  http://www.elementum.com
+
+# This file contains configuration values that are used in the @Configuration classes
+# See also: http://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#boot-features-external-config
+#
+# To access these properties use either @Value("${db.uri}") annotations, or via the Environment
+# class returned by the ApplicationContext.getEnvironment() method
+
+db:
+  uri: mongodb://localhost:27017/transport-application
+
+  # In addition to the URI, a DB can be specified
+  # database: test2
+  #
+  # Authentication credentials *could* be specified here, but it is highly discouraged
+  # and definitely DON'T DO THIS in Production; use command-line or environment variables instead
+  # username: marco
+  # password: secret
+
+logging:
+  level:
+    com.elementum: DEBUG
+    org.springframework: INFO

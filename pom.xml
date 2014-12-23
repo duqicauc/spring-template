@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2014 Elementum SCM, Inc. -->
+<!-- All rights reserved.  http://www.elementum.com -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.0.2.RELEASE</version>
+    </parent>
+
+    <artifactId>spring-template</artifactId>
+    <groupId>com.alertavert</groupId>
+    <name>Spring Template</name>
+    <description>Template project for a REST service, backed by MongoDB</description>
+    <version>1.0-SNAPSHOT</version>
+
+    <url>http://alertavert.com</url>
+    <organization>
+        <name>AlertAvert.com, Inc.</name>
+        <url>http://www.alertavert.com</url>
+    </organization>
+
+    <properties>
+        <java.version>8</java.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <format>xml</format>
+                    <format>html</format>
+                    <maxmem>256m</maxmem>
+                    <instrumentation>
+                        <excludes>
+                            <exclude>com/alertavert/**/*Configuration.class</exclude>
+                        </excludes>
+                    </instrumentation>
+                    <check>
+                        <totalLineRate>85</totalLineRate>
+                    </check>
+                    <!-- aggregated reports for multi-module projects
+                        <aggregate>true</aggregate>
+                    -->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <!-- Support for MongoDB and Spring Data -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+
+        <!-- Support for exposing Spring Data via the Spring MVC REST framework -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-rest</artifactId>
+        </dependency>
+
+        <!-- Spring Security -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>4.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>18.0</version>
+        </dependency>
+
+
+        <!--
+            TODO: Add the following modules going forward, as they will be useful in Prod deployment
+            spring-boot-starter-actuator        Adds production ready features such as metrics
+                                                and monitoring.
+            spring-boot-starter-remote-shell    Adds remote ssh shell support.
+        -->
+
+        <!-- Test support (includes JUnit, Mockito dependencies) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>

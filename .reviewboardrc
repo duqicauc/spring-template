@@ -1,0 +1,6 @@
+# RBCommons config file
+# Created m.massenzio@gmail.com, 2014-12-01
+
+REVIEWBOARD_URL = 'https://rbcommons.com/s/alertavert/'
+REPOSITORY = 'spring-template'
+TRACKING_BRANCH = 'origin/develop'
