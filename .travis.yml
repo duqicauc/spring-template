@@ -11,3 +11,8 @@ before_install:
 
 jdk:
   - oraclejdk8
+
+# Support for Coveralls.io
+# see: https://github.com/trautonen/coveralls-maven-plugin
+after_success:
+  - mvn clean cobertura:cobertura coveralls:report
