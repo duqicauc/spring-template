@@ -1,0 +1,5 @@
+# Travis CI Configuration file
+# Created by M. Massenzio, 2014-12-22
+
+language: java
+
