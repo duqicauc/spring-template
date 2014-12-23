@@ -68,7 +68,7 @@ public class SampleDataRestApplicationTests {
   public void canGetConfigValues() {
     String dbUrl = this.context.getEnvironment().getProperty("db.uri");
     assertThat(dbUrl, containsString("localhost"));
-    assertThat(dbUrl, endsWith("transport-test"));
+    assertThat(dbUrl, endsWith("server-test"));
   }
 
   @Test
@@ -84,7 +84,7 @@ public class SampleDataRestApplicationTests {
   @Test
   public void testConfigurationValues() {
     String dbUrl = this.context.getEnvironment().getProperty("db.uri");
-    assertThat(dbUrl, equalTo("mongodb://localhost:27017/transport-test"));
+    assertThat(dbUrl, equalTo("mongodb://localhost:27017/server-test"));
     assertThat(value, equalTo("this is a test"));
     assertThat(ops, is(notNullValue()));
   }

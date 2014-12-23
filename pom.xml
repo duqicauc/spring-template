@@ -27,6 +27,7 @@
     </organization>
 
     <properties>
+        <!-- We need to keep the target at Java 7, otherwise all Cobertura checks fail -->
         <java.version>7</java.version>
     </properties>
 
@@ -42,16 +43,29 @@
                 <version>2.6</version>
                 <configuration>
                     <formats>
+                        <!-- The XML report (in target/site/cobertura/coverage.xml)
+                             is useful for uploading to Coveralls.
+                         -->
                         <format>xml</format>
                         <format>html</format>
                     </formats>
                     <maxmem>256m</maxmem>
                     <instrumentation>
                         <excludes>
+                            <!-- Configuration and Application classes can be excluded
+                                 from test coverage, as they should have no meaningful
+                                 logic inside - include if they do.
+                            -->
                             <exclude>com/alertavert/**/*Configuration.class</exclude>
+                            <exclude>com/alertavert/**/*Application.class</exclude>
                         </excludes>
                     </instrumentation>
                     <check>
+                        <!-- Enable failing mvn build when test coverage does not meet
+                             or exceed goal:
+
+                             mvn cobertura:check test
+                        -->
                         <totalLineRate>70</totalLineRate>
                     </check>
                     <!-- aggregated reports for multi-module projects
@@ -59,6 +73,14 @@
                     -->
                 </configuration>
             </plugin>
+            <!-- Enables Coveralls.io integration (via Travis CI)
+
+                 If the project does not use Travis CI, run the following to upload
+                 test coverage results to Coveralls:
+                   mvn clean cobertura:cobertura coveralls:report -DrepoToken=azwIXg6Uo...
+
+                 You obtain the Repo Token from http://coveralls.io repo configuration page
+            -->
             <plugin>
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
@@ -80,11 +102,14 @@
             <artifactId>spring-boot-starter-data-rest</artifactId>
         </dependency>
 
-        <!-- Spring Security -->
+        <!-- Spring Security
+
+        TODO: disabled as I need to figure out how to plug security in
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
+        -->
 
         <dependency>
             <groupId>org.apache.commons</groupId>

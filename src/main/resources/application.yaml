@@ -8,7 +8,7 @@
 # class returned by the ApplicationContext.getEnvironment() method
 
 db:
-  uri: mongodb://localhost:27017/transport-application
+  uri: mongodb://localhost:27017/server-app
 
   # In addition to the URI, a DB can be specified
   # database: test2
@@ -20,5 +20,5 @@ db:
 
 logging:
   level:
-    com.elementum: DEBUG
+    com.alertavert: DEBUG
     org.springframework: INFO

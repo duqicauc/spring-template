@@ -5,6 +5,7 @@ package com.alertavert.template.persistence;
 
 import com.alertavert.template.AppConfiguration;
 import com.alertavert.template.SampleDataRestApplication;
+import com.alertavert.template.model.Comment;
 import com.alertavert.template.model.Issue;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,13 +29,23 @@ import static org.junit.Assert.assertNotNull;
                                            AppConfiguration.class})
 // Separate profile for web tests to avoid clashing databases
 @ActiveProfiles("test")
-public class SitesPersistenceTest {
+public class IssuesPersistenceTest {
 
   @Autowired
   MongoOperations ops;
 
   @Autowired
   IssueRepository repository;
+
+  /**
+   * Create a simple issue for test purposes, saves to DB and returns it.
+   *
+   * @return the newly created issue
+   */
+  public Issue createAndSaveIssue() {
+    Issue issue = (Issue.builder("Joe Reporter", "The gizmo foomps the droid")).newBug();
+    return repository.save(issue);
+  }
 
   @Before
   public void cleanupDb() {
@@ -58,4 +69,49 @@ public class SitesPersistenceTest {
     Issue found = repository.findOne("foobar");
     assertEquals(issue, found);
   }
+
+  @Test
+  public void canAddComment() {
+    Issue one = createAndSaveIssue();
+    one.addComment(new Comment("what?", "Who?"));
+    repository.save(one);
+
+    // verify it updated the current one, did not save it as new
+    assertEquals(1, repository.count());
+    Issue found = repository.findOne(one.getId());
+    assertEquals(one, found);
+    assertEquals(1, found.getComments().size());
+  }
+
+  @Test
+  public void commentContentIsSaved() {
+    Issue one = createAndSaveIssue();
+    Comment description = new Comment(
+            "When I grid the foop, the foor tohe does not wimps the timps",
+            "Shrewd Commenter");
+    one.addComment(description);
+    repository.save(one);
+
+    // verify it updated the current one, did not save it as new
+    assertEquals(1, repository.count());
+    Issue found = repository.findOne(one.getId());
+    assertEquals(one, found);
+    assertEquals(1, found.getComments().size());
+    assertEquals(description.getContent(), found.getComments().get(0).getContent());
+  }
+
+  @Test
+  public void commenterIsAddedAsWatcher() {
+    Issue one = createAndSaveIssue();
+    Comment description = new Comment(
+            "Wanna really watch this!",
+            "user_1");
+    one.addComment(description, true);
+    repository.save(one);
+    Issue found = repository.findOne(one.getId());
+    assertEquals(one, found);
+    assertEquals(1, found.getWatchers().size());
+    assertEquals("user_1", found.getWatchers().get(0));
+  }
+
 }

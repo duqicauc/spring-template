@@ -106,6 +106,10 @@ public class Issue {
     this.assignee = assignee;
   }
 
+  /**
+   * @return the set of watchers as a {@link java.util.List}, which is easier for callers and
+   * clients to manage than a {@link java.util.Set}.
+   */
   public List<String> getWatchers() {
     return Lists.newArrayList(watchers);
   }
@@ -131,7 +135,20 @@ public class Issue {
   }
 
   public void addComment(Comment comment) {
+    this.addComment(comment, false);
+  }
+
+  /**
+   * Adds a comment, optionally adding the reporter as a Watcher for the issue
+   *
+   * @param comment the comment to be added
+   * @param shouldWatch whether the commenter should be added to the {@link #watchers} set
+   */
+  public void addComment(Comment comment, boolean shouldWatch) {
     this.comments.add(comment);
+    if (shouldWatch) {
+      this.watchers.add(comment.getCommenter());
+    }
   }
 
   public void editComment(int i, Comment comment) {
