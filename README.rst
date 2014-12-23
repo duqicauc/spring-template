@@ -3,11 +3,11 @@ transport-server
 ================
 
 .. image:: https://travis-ci.org/massenz/spring-template.svg?branch=develop
-:target: https://travis-ci.org/massenz/spring-template
+    :target: https://travis-ci.org/massenz/spring-template
 
 
 .. image:: https://coveralls.io/repos/massenz/spring-template/badge.png
-:target: https://coveralls.io/r/massenz/spring-template
+    :target: https://coveralls.io/r/massenz/spring-template
 
 
 :Author: Marco Massenzio (marco@alertavert.com)
