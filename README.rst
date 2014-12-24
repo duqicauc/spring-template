@@ -1,6 +1,6 @@
-================
-transport-server
-================
+====================
+Spring Boot Template
+====================
 
 .. image:: https://travis-ci.org/massenz/spring-template.svg?branch=develop
     :target: https://travis-ci.org/massenz/spring-template
@@ -11,7 +11,7 @@ transport-server
 :Author: Marco Massenzio (marco@alertavert.com)
 :Revision: 1.0-SNAPSHOT
 :Created: 2014-12-21
-:Updated: 2014-12-21
+:Updated: 2014-12-23
 
 Overview
 ========
@@ -27,8 +27,6 @@ Data Structure
 The Persistence Layer is based on MongoDB, using DAOs to separate data
 concerns from business logic concerns.
 
-See the `Data Schema`_
-
 
 Application Framework
 =====================
@@ -39,8 +37,15 @@ and `Spring Data`_ to manage the repositories.
 
 Dependencies are managed via Maven (see the POM_)
 
-.. _Data Schema: docs/data_schema.rst
+Copyright and License
+=====================
+
+This software is (c) 2014 Marco Massenzio and is licensed
+according to the `Apache 2 License`_ ; see also the LICENSE_ file in this folder.
+
+
 .. _Spring Boot: http://spring.io/spring-boot
 .. _Spring Data: http://spring.io/spring-data
 .. _POM: pom.xml
-
+.. _LICENSE: LICENSE
+.. _Apache 2 License: http://www.apache.org/licenses/LICENSE-2.0
