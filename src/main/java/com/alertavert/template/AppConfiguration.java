@@ -6,7 +6,6 @@ package com.alertavert.template;
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -137,4 +136,5 @@ public class AppConfiguration extends AbstractMongoConfiguration {
       return new SimpleMongoDbFactory(mongo(), databaseName, userCredentials);
     }
   }
+
 }

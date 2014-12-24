@@ -55,7 +55,7 @@ public class SampleDataRestApplicationTests {
   @Before
   public void setUp() {
     this.mvc = MockMvcBuilders.webAppContextSetup(this.context).build();
-    ops.dropCollection(Issue.class);
+//    ops.dropCollection(Issue.class);
   }
 
   @Test

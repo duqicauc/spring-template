@@ -4,15 +4,14 @@
 package com.alertavert.template.persistence;
 
 import com.alertavert.template.AppConfiguration;
+import com.alertavert.template.BasePersistenceTest;
 import com.alertavert.template.SampleDataRestApplication;
 import com.alertavert.template.model.Comment;
 import com.alertavert.template.model.Issue;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -25,14 +24,9 @@ import static org.junit.Assert.assertNotNull;
  * @author mmassenzio@elementum.com
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = {SampleDataRestApplication.class,
-                                           AppConfiguration.class})
 // Separate profile for web tests to avoid clashing databases
 @ActiveProfiles("test")
-public class IssuesPersistenceTest {
-
-  @Autowired
-  MongoOperations ops;
+public class IssuesPersistenceTest extends BasePersistenceTest {
 
   @Autowired
   IssueRepository repository;
@@ -45,11 +39,6 @@ public class IssuesPersistenceTest {
   public Issue createAndSaveIssue() {
     Issue issue = (Issue.builder("Joe Reporter", "The gizmo foomps the droid")).newBug();
     return repository.save(issue);
-  }
-
-  @Before
-  public void cleanupDb() {
-    ops.dropCollection(Issue.class);
   }
 
   @Test

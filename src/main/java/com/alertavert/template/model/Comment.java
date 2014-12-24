@@ -17,6 +17,13 @@ public class Comment {
     private final String commenter;
     private final Date created;
 
+    private Comment() {
+        created = new Date();
+        commenter = "";
+        content = "";
+    }
+
+
     public Comment(String content, String commenter) {
         this.created = new Date();
         this.commenter = commenter;
