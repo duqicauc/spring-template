@@ -7,16 +7,11 @@ package com.alertavert.template;
 import com.alertavert.template.model.Comment;
 import com.alertavert.template.model.Issue;
 import com.alertavert.template.resources.IssuesService;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.apache.commons.lang3.StringUtils;
-
-import javax.websocket.server.PathParam;
-import java.util.List;
-
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 /**
  * The main API controller
@@ -24,7 +19,6 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
  * Created by marco on 12/23/14.
  */
 @RestController
-@RequestMapping("/api/v1")
 public class ApiController {
 
     private static final Logger LOG = LoggerFactory.getLogger(ApiController.class);
@@ -37,34 +31,15 @@ public class ApiController {
     }
 
 
-    @RequestMapping(value = "/issue", method = RequestMethod.POST,
-            produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
-    public
-    @ResponseBody
-    Issue createIssue(@RequestBody Issue newIssue) {
-        String id = service.reportNewIssue(newIssue);
-        if (id == null) {
-            throw new IllegalStateException("Could not create new issue");
-        }
-        // TODO: add Location header with URI for this issue
-        return newIssue;
-    }
-
-    @RequestMapping(value = "/issues", method=RequestMethod.GET, produces = APPLICATION_JSON_VALUE)
-    List<Issue> getAllIssues() {
-        LOG.warn("Retrieving all issues - this may take a while, use paging instead");
-        return service.getAllIssues();
-    }
-
-    @RequestMapping(value = "/issue/{id}/comment", method = RequestMethod.POST,
-                    produces = APPLICATION_JSON_VALUE,
-                    consumes = APPLICATION_JSON_VALUE)
-    public Issue createIssue(@PathVariable String id, @RequestBody Comment comment) {
+    @RequestMapping(value = "/issues/{id}/comment", method = RequestMethod.POST)
+    public Issue createIssue(@PathVariable String id,
+                             @RequestBody Comment comment,
+                             @RequestParam(required = false, defaultValue = "true") boolean track) {
         if (StringUtils.isNotBlank(id)) {
-            LOG.info("Adding comment to " + id);
+            LOG.info("Adding comment to issue {}", id);
             Issue issue = service.getIssue(id);
             if (issue != null) {
-                issue.addComment(comment, true);
+                issue.addComment(comment, track);
                 service.save(issue);
                 return issue;
             }

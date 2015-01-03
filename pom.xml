@@ -64,8 +64,7 @@
                     <check>
                         <!-- Enable failing mvn build when test coverage does not meet
                              or exceed goal:
-
-                             mvn cobertura:check test
+                                 mvn cobertura:check test
                         -->
                         <totalLineRate>70</totalLineRate>
                     </check>
@@ -78,7 +77,7 @@
 
                  If the project does not use Travis CI, run the following to upload
                  test coverage results to Coveralls:
-                   mvn clean cobertura:cobertura coveralls:report -DrepoToken=azwIXg6Uo...
+                     mvn clean cobertura:cobertura coveralls:report -DrepoToken=azwIXg6Uo...
 
                  You obtain the Repo Token from http://coveralls.io repo configuration page
             -->

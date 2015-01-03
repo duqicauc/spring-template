@@ -4,6 +4,7 @@
 
 package com.alertavert.template.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import org.springframework.data.annotation.Id;
@@ -20,6 +21,7 @@ import java.util.Set;
  */
 
 @Document(collection = "issues")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Issue {
 
   @Id
