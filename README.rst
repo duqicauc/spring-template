@@ -50,25 +50,50 @@ HATEOAS
 -------
 
 `Spring REST`_ implements the HATEOAS principles, and enables discovery of endpoints and
-resources; the starting point is the ``root`` API::
+resources; the starting point is the ``root`` API [#]_::
 
-    http://localhost:8080/
+    http://localhost:8080/api/v1
 
 which returns something similar to::
 
     {
         "_links": {
            "issues": {
-                "href": "http://localhost:8080/issues{?page,size,sort}",
+                "href": "http://localhost:8080/api/v1/issue{?page,size,sort}",
                 "templated": true
             },
             "profile": {
-                "href": "http://localhost:8080/alps"
+                "href": "http://localhost:8080/api/v1/alps"
             }
         }
     }
 
-and from which a client application can progress to "discover" services and entities[#]_.
+and from which a client application can progress to "discover" services and entities [#]_.
+
+Search Queries
+--------------
+
+`Spring REST`_ also supports out-of-the-box search querying capabilities, linked to the
+methods exposed by the `Spring Repositories`_, via URI parameters mapping.
+
+To discover the search capabilities of a given entity (again, following HATEOAS principles) one
+uses the `search resource`_::
+
+    http://localhost:8080/api/v1/issue/search
+
+and queries against the entity can be executed by hitting an endpoint such as::
+
+    http://localhost:8080/api/v1/issue/search/findByReporter?reporter=user-1
+
+which is mapped from the repository method::
+
+    @RepositoryRestResource(path = "issue")
+    public interface IssueRepository extends PagingAndSortingRepository<Issue, String> {
+        Issue findByReporter(@Param("reporter")String reporter);
+    }
+
+As this is a ``PagingAndSortingRepository``, the usual ``page`` etc. query params are allowed too.
+
 
 Copyright and License
 =====================
@@ -76,6 +101,8 @@ Copyright and License
 This software is (c) 2014 Marco Massenzio and is licensed
 according to the `Apache 2 License`_ ; see also the LICENSE_ file in this folder.
 
+.. [#] The *root* endpoint has been customized via the RestConfiguration_ class from the default
+``/``
 .. [#] See the section about `Resource Discoverability`_ for more information.
 
 .. _Spring Boot: http://spring.io/spring-boot
@@ -86,3 +113,5 @@ according to the `Apache 2 License`_ ; see also the LICENSE_ file in this folder
 .. _LICENSE: LICENSE
 .. _Apache 2 License: http://www.apache.org/licenses/LICENSE-2.0
 .. _Resource Discoverability: http://docs.spring.io/spring-data/rest/docs/2.3.0.M1/reference/html/#repository-resources.resource-discoverability
+.. _RestConfiguration: TBA
+.. _search resource: http://docs.spring.io/spring-data/rest/docs/2.3.0.M1/reference/html/#repository-resources.search-resource

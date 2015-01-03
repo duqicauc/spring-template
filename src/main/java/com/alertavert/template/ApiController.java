@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
  * Created by marco on 12/23/14.
  */
 @RestController
+@RequestMapping("/api/v1")
 public class ApiController {
 
     private static final Logger LOG = LoggerFactory.getLogger(ApiController.class);
@@ -31,7 +32,7 @@ public class ApiController {
     }
 
 
-    @RequestMapping(value = "/issues/{id}/comment", method = RequestMethod.POST)
+    @RequestMapping(value = "/issue/{id}/comment", method = RequestMethod.POST)
     public Issue createIssue(@PathVariable String id,
                              @RequestBody Comment comment,
                              @RequestParam(required = false, defaultValue = "true") boolean track) {

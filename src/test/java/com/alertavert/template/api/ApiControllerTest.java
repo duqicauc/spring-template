@@ -43,6 +43,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @ActiveProfiles("test")
 public class ApiControllerTest {
 
+    public static final String ISSUES_API = "/api/v1/issue";
+
     // TODO: is there a simpler way of extracting the mapped Issues from the HAL format?
     public static class HalIssues {
         @JsonProperty("_links")
@@ -73,7 +75,7 @@ public class ApiControllerTest {
     @Test
     public void testCreateIssue() throws Exception {
         Issue newIssue = Issue.builder("reporter", "title").newBug();
-        MockHttpServletRequestBuilder builder = post("/issues").content(
+        MockHttpServletRequestBuilder builder = post(ISSUES_API).content(
                 mapper.writeValueAsString(newIssue));
         MvcResult result = mvc.perform(builder).andReturn();
         assertEquals(HttpStatus.CREATED.value(), result.getResponse().getStatus());
@@ -82,13 +84,13 @@ public class ApiControllerTest {
         String id = location.substring(location.lastIndexOf('/') + 1);
         assertTrue(ObjectId.isValid(id));
         // clean up
-        mvc.perform(delete("/issues/{id}", id));
+        mvc.perform(delete(String.format("%s/%s", ISSUES_API, "{id}"), id));
     }
 
     @Test
     public void testGetAllIssues() throws Exception {
         createIssues(5);
-        MvcResult result = mvc.perform(get("/issues")).andReturn();
+        MvcResult result = mvc.perform(get(ISSUES_API)).andReturn();
         List<Issue> issues = extractEmbeddedIssues(result);
         assertThat(issues.size(), greaterThanOrEqualTo(5));
     }
@@ -96,7 +98,7 @@ public class ApiControllerTest {
     public void createIssues(int num) throws Exception {
         for (int i = 0; i < num; ++i) {
             Issue newIssue = Issue.builder("reporter", "title").newBug();
-            MockHttpServletRequestBuilder builder = post("/issues").content(
+            MockHttpServletRequestBuilder builder = post(ISSUES_API).content(
                 mapper.writeValueAsString(newIssue));
             mvc.perform(builder);
         }

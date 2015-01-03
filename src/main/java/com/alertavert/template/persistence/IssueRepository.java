@@ -6,6 +6,8 @@ package com.alertavert.template.persistence;
 
 import com.alertavert.template.model.Issue;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 /**
  * <p>This is a very basic initial implementation that only enables basic upsert and querying
@@ -13,7 +15,8 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  *
  * Created by mmassenzio on 12/9/14.
  */
+@RepositoryRestResource(path = "issue")
 public interface IssueRepository extends PagingAndSortingRepository<Issue, String> {
 
-  Issue findByReporter(String reporter);
+  Issue findByReporter(@Param("reporter")String reporter);
 }
