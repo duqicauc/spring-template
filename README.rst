@@ -113,5 +113,5 @@ according to the `Apache 2 License`_ ; see also the LICENSE_ file in this folder
 .. _LICENSE: LICENSE
 .. _Apache 2 License: http://www.apache.org/licenses/LICENSE-2.0
 .. _Resource Discoverability: http://docs.spring.io/spring-data/rest/docs/2.3.0.M1/reference/html/#repository-resources.resource-discoverability
-.. _RestConfiguration: TBA
+.. _RestConfiguration: https://github.com/massenz/spring-template/blob/develop/src/main/java/com/alertavert/template/RestConfiguration.java
 .. _search resource: http://docs.spring.io/spring-data/rest/docs/2.3.0.M1/reference/html/#repository-resources.search-resource
