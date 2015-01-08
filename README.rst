@@ -94,6 +94,46 @@ which is mapped from the repository method::
 
 As this is a ``PagingAndSortingRepository``, the usual ``page`` etc. query params are allowed too.
 
+Testing, Deploying & Running the Application
+============================================
+
+Testing and running locally is achieved via Maven::
+
+    mvn clean test
+    mvn clean cobertura:cobertura test
+    mvn clean cobertura:check test
+
+the second and third invocation will, respectively, generate the code coverage report
+(in ``target/site/cobertura/index.html``) and check that test coverage exceeds the minimum threshold
+set in ``pom.xml``::
+
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>cobertura-maven-plugin</artifactId>
+            <version>2.6</version>
+            <configuration>
+                ...
+                <check>
+                    <totalLineRate>70</totalLineRate>
+                </check>
+            </configuration>
+        </plugin>
+
+see the `cobertura plugin`_ documentation for more info.
+
+`Spring Boot`_ generates the application as an embedded Tomcat JAR application, so this can
+be run either via ``mvn`` or directly via ``java``::
+
+    mvn spring-boot:run
+    java -jar target/spring-template-1.0-SNAPSHOT.jar -Dsecurity.user.password=azekre7
+
+see `.travis.yml`_ for an example of how to deploy and execute on a "blank" Linux (Debian) server.
+
+Using AWS Beanstalk
+-------------------
+
+TODO: experiment & document here
+
 
 Copyright and License
 =====================
@@ -115,3 +155,5 @@ according to the `Apache 2 License`_ ; see also the LICENSE_ file in this folder
 .. _Resource Discoverability: http://docs.spring.io/spring-data/rest/docs/2.3.0.M1/reference/html/#repository-resources.resource-discoverability
 .. _RestConfiguration: https://github.com/massenz/spring-template/blob/develop/src/main/java/com/alertavert/template/RestConfiguration.java
 .. _search resource: http://docs.spring.io/spring-data/rest/docs/2.3.0.M1/reference/html/#repository-resources.search-resource
+.. _cobertura plugin: http://mojo.codehaus.org/cobertura-maven-plugin/usage.html
+.. _.travis.yml: https://github.com/massenz/spring-template/blob/develop/.travis.yml
