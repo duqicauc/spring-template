@@ -8,6 +8,9 @@ Spring Boot Template
 .. image:: https://coveralls.io/repos/massenz/spring-template/badge.png?branch=develop
     :target: https://coveralls.io/r/massenz/spring-template?branch=develop
 
+.. image:: https://go-shields.herokuapp.com/license-apache2-blue.png
+    
+
 :Author: Marco Massenzio (marco@alertavert.com)
 :Revision: 1.0-SNAPSHOT
 :Created: 2014-12-21
