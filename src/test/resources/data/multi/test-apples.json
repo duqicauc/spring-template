@@ -1,0 +1,16 @@
+{
+    "title": "Test data for MultiTest - these are apples",
+    "collection": "apples",
+    "data": [
+        {
+            "id": 1,
+            "variety": "Delicious",
+            "origin": "Central Valley, CA"
+        },
+        {
+            "id": 2,
+            "variety": "Trentina",
+            "origin": "Trentino, Italy"
+        }
+    ]
+}

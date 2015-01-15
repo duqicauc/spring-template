@@ -68,7 +68,7 @@
                         -->
                         <totalLineRate>70</totalLineRate>
                     </check>
-                    <!-- aggregated reports for multi-module projects
+                    <!-- aggregated reports for data.multi-module projects
                         <aggregate>true</aggregate>
                     -->
                 </configuration>
@@ -141,6 +141,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

@@ -1,0 +1,16 @@
+{
+    "title": "Test data for ShipmentNotice",
+    "collection": "tests",
+    "data": [
+        {
+            "id": 1,
+            "name": "test-1",
+            "value": "not my fault"
+        },
+        {
+            "id": 2,
+            "name": "test-2",
+            "value": "did this and that"
+        }
+    ]
+}

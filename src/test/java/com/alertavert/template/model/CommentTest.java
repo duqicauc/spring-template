@@ -1,6 +1,8 @@
-// Copyright Marco Massenzio (c) 2014.
-// This code is licensed according to the terms of the Apache 2 License.
-// See http://www.apache.org/licenses/LICENSE-2.0
+/*
+ * // Copyright Marco Massenzio (c) 2015.
+ * // This code is licensed according to the terms of the Apache 2 License.
+ * // See http://www.apache.org/licenses/LICENSE-2.0
+ */
 
 package com.alertavert.template.model;
 

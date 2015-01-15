@@ -1,0 +1,25 @@
+{
+    "title": "Test data for MultiTest - these are dogs",
+    "collection": "dogs",
+    "data": [
+        {
+            "id": 197,
+            "species": "Doberman",
+            "name": "Fuffy",
+            "apple_id": 1
+        },
+        {
+            "id": 245,
+            "species": "German Shepherd",
+            "name": "Fritz",
+            "apple_id": 2
+        },
+        {
+            "id": 246,
+            "species": "Italian Shepherd",
+            "name": "Antonio",
+            "apple_id": 2
+        }
+
+    ]
+}
