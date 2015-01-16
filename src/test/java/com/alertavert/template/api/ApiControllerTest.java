@@ -1,8 +1,6 @@
-/*
- * // Copyright Marco Massenzio (c) 2015.
- * // This code is licensed according to the terms of the Apache 2 License.
- * // See http://www.apache.org/licenses/LICENSE-2.0
- */
+//  Copyright Marco Massenzio (c) 2015.
+//  This code is licensed according to the terms of the Apache 2 License.
+//  See http://www.apache.org/licenses/LICENSE-2.0
 
 package com.alertavert.template.api;
 
@@ -11,8 +9,8 @@ import com.alertavert.template.AppConfiguration;
 import com.alertavert.template.SampleDataRestApplication;
 import com.alertavert.template.model.Issue;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.bson.types.ObjectId;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,9 +30,11 @@ import org.springframework.web.context.WebApplicationContext;
 import java.util.List;
 import java.util.Map;
 
-import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
